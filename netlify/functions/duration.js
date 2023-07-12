@@ -1,5 +1,5 @@
-import fetch from 'node-fetch'
-import xml2Json from 'xml2json'
+const fetch = require('node-fetch')
+const xml2Json = require('xml2json')
 
 const getLengthData = (length) => {
     console.log(length);

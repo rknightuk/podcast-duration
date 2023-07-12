@@ -1,8 +1,7 @@
-const fetch = require('node-fetch')
-const xml2Json = require('xml2json')
+import fetch from 'node-fetch'
+import xml2Json from 'xml2json'
 
 const getLengthData = (length) => {
-    console.log(length);
     const hours = Math.floor(length / 60 / 60);
     const minutes = Math.floor(length / 60) - (hours * 60);
     const seconds = length % 60;

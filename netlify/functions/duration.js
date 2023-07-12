@@ -24,6 +24,7 @@ export const handler = async (event) => {
             const episodes = (Array.isArray(data.rss.channel.item) ? data.rss.channel.item : [data.rss.channel.item])
             const length = episodes.reduce((memo, l) => {
                 const duration = l['itunes:duration']
+                if (!duration) return memo
                 if (!duration.includes(':'))
                 {
                     memo += parseInt(duration, 10)

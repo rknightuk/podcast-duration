@@ -5,7 +5,7 @@ const getLengthData = (length) => {
     const hours = Math.floor(length / 60 / 60);
     const minutes = Math.floor(length / 60) - (hours * 60);
     const seconds = length % 60;
-    const formatted = `${hours ? `${hours} hours, ` : ''} ${minutes} minutes and ${seconds} seconds`
+    const formatted = `${hours ? `${hours} hours,` : ''} ${minutes} minutes${seconds ? ` and ${seconds} seconds` : ''}`
 
     return {
         hours,

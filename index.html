@@ -104,7 +104,6 @@
         const artwork = document.getElementById('artwork')
         const outputEl = document.getElementById('output')
         calculate.addEventListener('click', () => {
-            artwork.innerHTML = ''
             outputEl.innerHTML = ''
             const feed = document.getElementById('feed').value
             if (!feed) return
@@ -133,6 +132,7 @@
                     calculate.value = 'Calculate Duration'
                     if (data === 'error')
                     {
+                        artwork.innerHTML = '<img src="/icons/icon.png"></div>'
                         document.getElementById('output').innerHTML = ':( Unable to read feed'
                         return
                     }

@@ -20,6 +20,9 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=atkinson-hyperlegible:400,400i,700,700i" rel="stylesheet" />
+
     <script src="https://cdn.usefathom.com/script.js" data-site="QDIPVNEO" defer></script>
 
     <style>
@@ -28,7 +31,7 @@
             display: grid;
             place-items: center;
             align-content: center;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-family: 'Atkinson Hyperlegible';
             color: #2c2d30;
             font-size: 20px;
             max-width: 650px;
@@ -60,7 +63,7 @@
 
         .examples {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4 , 1fr);
             grid-gap: 10px;
         }
 
@@ -87,8 +90,10 @@
     <div class="examples">
         <img src="img/ruminate.png" onclick="run('https://ruminatepodcast.com/feed.xml')">
         <img src="img/hv.jpg" onclick="run('https://feeds.fireside.fm/hemisphericviews/rss')">
+        <img src="img/bonanza.jpg" onclick="run('https://www.relay.fm/bonanza/feed')">
         <img src="img/wgf.png" onclick="run('https://wegot.family/feed.xml')">
         <img src="img/connected.jpg" onclick="run('https://www.relay.fm/connected/feed')">
+        <img src="img/mim.jpg" onclick="run('http://most-important-meal.com/episodes?format=rss')">
         <img src="img/rss.jpg" onclick="run('https://www.rsspod.net/rss')">
         <img src="img/tcou.jpg" onclick="run('https://feeds.theincomparable.com/tcou')">
     </div>
@@ -130,7 +135,7 @@
                 })
                 .then(data => {
                     calculate.value = 'Calculate Duration'
-                    if (data === 'error')
+                    if (data === 'error' || !data)
                     {
                         artwork.innerHTML = '<img src="/icons/icon.png"></div>'
                         document.getElementById('output').innerHTML = ':( Unable to read feed'

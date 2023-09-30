@@ -1,5 +1,6 @@
 import fetch from 'node-fetch'
 import xml2Json from 'xml2json'
+import { parseHTML } from 'linkedom'
 
 const getLengthData = (length) => {
     const hours = Math.floor(length / 60 / 60);
@@ -59,14 +60,24 @@ const attemptFetchFeed = async (feed) => {
     }
 }
 
+const findFeedUrlFromLink = async (link) => {
+    const response = await fetch(link)
+    const html = await response.text()
+    const { document } = parseHTML(html)
+
+    return Array.from(document.getElementsByTagName('link')).find(l => l.type.includes('application/rss+xml'))?.href
+}
+
 export const handler = async (event) => {
-    const feed = event.queryStringParameters.feed
+    let feed = event.queryStringParameters.feed
     
     let data = await attemptFetchFeed(feed)
 
     if (!data)
     {
-        // todo attempt to find feed
+        feed = await findFeedUrlFromLink(feed)
+
+        if (feed) data = await attemptFetchFeed(feed)
     }
 
     return {

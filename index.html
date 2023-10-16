@@ -81,7 +81,9 @@
 <body>
     <div class="output">
         <div id="artwork" class="artwork"><img src="/icons/icon.png"></div>
-        <p id="output">Enter a podcast RSS feed below to calculate total duration:</p>
+        <div id="output">
+            <p>Enter a podcast RSS feed below to calculate total duration:</p>
+        </div>
     </div>
     <input type="text" id="feed">
     <input type="submit" value="Calculate Duration" id="calculate">
@@ -142,7 +144,10 @@
                         return
                     }
 
-                    const output = `If you listened to all ${data.episodes} episodes of <a target="_blank" href="${data.link}">${data.title}</a> it would take <br><strong>${data.duration.formatted}</strong>, an average of <strong>${data.average.formatted}</strong> per episode`
+                    const output = `
+                        <p>If you listened to all ${data.episodes} episodes of <a target="_blank" href="${data.link}">${data.title}</a> it would take <br><strong>${data.duration.formatted}</strong>, an average of <strong>${data.average.formatted}</strong> per episode.</p>
+                        <p>The longest episode is <a href="${data.longestEpisode.link}">${data.longestEpisode.title}</a> at <strong>${data.longestEpisode.length.formatted}</strong> and the shortest episode is <a href="${data.shortestEpisode.link}">${data.shortestEpisode.title}</a> at <strong>${data.shortestEpisode.length.formatted}</strong>.</p>
+                    `
                     outputEl.innerHTML = output
                     artwork.innerHTML = `<img src="${data.artwork}">`
 
